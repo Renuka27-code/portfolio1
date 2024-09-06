@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #081b29;
+            color: #ededed;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            transition: background 0.3s ease;
+        }
+
+        .header.sticky {
+            background: #081b29;
+        }
+
+        .logo {
+            font-size: 28px;
+            color: #ededed;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .navbar a {
+            font-size: 20px;
+            color: #ededed;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 35px;
+            transition: .3s;
+        }
+
+        .navbar a:hover,
+        .navbar a.active {
+            color: #00abf0;
+        }
+
+        .home {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .home-content {
+            max-width: 50%;
+            text-align: center;
+        }
+
+        .home-content h1 {
+            font-size: 49px;
+            font-weight: 500;
+        }
+
+        .home-content h3 {
+            font-size: 34px;
+            font-weight: 700;
+            color: #00abf0;
+        }
+
+        .home-content p {
+            font-size: 16px;
+            margin: 2px 0 40px;
+        }
+
+        .home-content .btn-box a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #00abf0;
+            border-radius: 5px;
+            color: #081b29;
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 20px;
+            transition: 0.3s;
+        }
+
+        .home-content .btn-box a:hover {
+            background: transparent;
+            color: #00abf0;
+            border: 2px solid #00abf0;
+        }
+
+        .home-sci {
+            margin-top: 20px;
+        }
+
+        .home-sci a {
+            display: inline-block;
+            font-size: 20px;
+            color: #00abf0;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+
+        .home-sci a:hover {
+            color: #081b29;
+        }
+
+        .home img {
+            margin-left: 20px;
+        }
+
+        section {
+            padding: 100px 10%;
+        }
+
+        #about {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        #about h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #about p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        #Projects {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        #Projects h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .project {
+            width: 30%;
+            margin: 20px 0;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+        }
+
+        .project img {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .project h4 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #ededed;
+        }
+
+        #contact form input,
+        #contact form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #1a3d54;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        #contact form input[type="submit"] {
+            background-color: #00abf0;
+            color: #081b29;
+            cursor: pointer;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: #ededed;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: #333;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            .navbar.active {
+                display: flex;
+            }
+
+            .navbar a {
+                padding: 15px;
+                width: 100%;
+                text-align: left;
+                background: #444;
+                font-size: 20px;
+            }
+
+            #Projects {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects {
+                width: 80%;
+            }
+          
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">My portfolio</a>
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#Projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="menu-toggle">
+            <i class="bx bx-menu"></i>
+        </div>
+    </header>
+
+    <section id="home" class="home">
+        <div class="home-content">
+            <h1>Hi, I'm RENUKA</h1>
+            <h3>WEB Developer</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ipsa facilis veritatis sequi repellendus repudiandae excepturi iusto dignissimos reprehenderit ducimus a!</p>
+            <div class="btn-box">
+                <a href="#contact">CONTACT ME</a>
+            </div>
+            <div class="home-sci">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+        <img class="image" src="c:\Users\chara\OneDrive\Pictures\Screenshots\renuk.jpg"
+     alt="image" style="width: 500px; height: 400px; border-radius: 50%;">
+
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I am a passionate WEB developer with expertise in creating responsive and interactive websites.
+            I love working with modern technologies and am committed to continuously improving my skills. 
+            Frontend development excites me because it lets me craft visually engaging and user-friendly experiences. 
+            Transforming complex ideas into intuitive, aesthetically pleasing interfaces and solving design problems drive my enthusiasm. 
+            Staying updated with the latest trends and technologies keeps me motivated, and the satisfaction of seeing a project come to life and positively impact users is incredibly rewarding.
+        </p>
+    </section>
+
+    <section id="Projects">
+        <h2>My Projects</h2>
+        <h3 style="color: #3dc2ae;">
+            <a href="file:///C:/Users/chara/OneDrive/Desktop/html_course/councelling%20form.html" style="color: inherit; text-decoration: underline;">
+                Counselling Form
+            </a>
+        </h3>
+        <p>A counseling form is a document used by professionals such as therapists, counselors, or guidance staff to collect important information from individuals seeking counseling services. It typically includes sections for personal details (name, age, contact information), medical and psychological history, current concerns or issues, and goals for counseling. The form may also have questions about past therapy experiences, medication, and lifestyle factors such as stress levels, relationships, and work-life balance. Its primary purpose is to help the counselor understand the client's</p>
+        <h3 style="color: #7fe20d;">
+            <a href="file:///C:/Users/chara/OneDrive/Desktop/html_course/timetable.html" style="color: inherit; text-decoration: underline;">
+                Time Table
+            </a>
+        </h3>
+        <P>To create a webpage timetable, start by planning and designing the layout, including key features like days and times. Use HTML to structure the timetable in a table format, and apply CSS for styling to enhance readability and visual appeal. Optionally, add interactivity with JavaScript or libraries like DataTables for features such as sorting. Test the timetable across different devices and browsers to ensure responsiveness and functionality, then deploy the webpage to a hosting platform, ensuring all elements work seamlessly in the live environment.</P>
+    </section>
+    
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form action="">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send Message">
+        </form>
+    </section>
+
+    <script>
+              document.querySelectorAll('.navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Menu toggle for mobile view
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navbar = document.querySelector('.navbar');
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        // Sticky header
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('.header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+    </script>
+</body>
+</html>
